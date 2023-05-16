@@ -1,0 +1,6 @@
+(executable
+(public_name "frama-c-ocaml-ctypes")
+(name main)
+(libraries frama-c.kernel frama-c.init.cmdline fmt)
+(package frama-c-ocaml-ctypes)
+)
