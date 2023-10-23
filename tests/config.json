@@ -1,0 +1,3 @@
+{
+    "allocations": [ { "ctype": "bar_struct", "init" : "init_bar", "clear" : "clear_bar"}]   
+}

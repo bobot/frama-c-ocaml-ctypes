@@ -14,3 +14,6 @@ void foo(void);
 int bar(int x){
   return x;
 }
+
+void init_bar(bar_struct *b);
+void clear_bar(bar_struct *b);

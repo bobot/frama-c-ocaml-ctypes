@@ -1,9 +1,14 @@
 (rule (with-stdout-to absolute_cwd (run pwd)))
 
 (rule
-  (targets type_description.ml function_description.ml)
+  (targets type_description.ml function_description.ml highlevel.ml)
   (action (setenv PWD %{read-lines:absolute_cwd} 
-                 (run %{bin:frama-c-ocaml-ctypes} -verbose 0 -output-type type_description.ml -output-function function_description.ml %{dep:foo.h}))))
+                 (run %{bin:frama-c-ocaml-ctypes} -verbose 0
+                   -output-type type_description.ml
+                   -output-function function_description.ml
+                   -highlevel-function highlevel.ml
+                   -gen-config %{dep:config.json}
+                   %{dep:foo.h}))))
 
 
 (library

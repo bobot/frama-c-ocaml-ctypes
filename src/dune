@@ -2,5 +2,6 @@
 (public_name "frama-c-ocaml-ctypes")
 (name main)
 (libraries frama-c.kernel frama-c.init.cmdline fmt)
+(preprocess (pps ppx_deriving_yojson))
 (package frama-c-ocaml-ctypes)
 )
