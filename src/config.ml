@@ -1,11 +1,11 @@
 open Register
 
-type allocation = { ctype : string; init : string; clear : string }
+type init_clear = { ctype : string; init : string; clear : string }
 [@@deriving yojson]
 
-type t = { allocations : allocation list } [@@deriving yojson]
+type t = { init_clear : init_clear list } [@@deriving yojson]
 
-let default = { allocations = [] }
+let default = { init_clear = [] }
 
 let read_config filename =
   let json = Yojson.Safe.from_file filename in

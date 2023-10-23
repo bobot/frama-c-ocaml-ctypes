@@ -235,7 +235,7 @@ end|}
         (Fmt.list print_function_global)
         globals)
 
-let print_allocation fmt (a : Config.allocation) =
+let print_init_clear fmt (a : Config.init_clear) =
   Fmt.pf fmt
     {|let mk_%s =
        let s = Ctypes.allocate_n ~count:1 ~finalise:%s.Function.%s %s.Type.%s in
@@ -245,11 +245,11 @@ let print_allocation fmt (a : Config.allocation) =
     (Entry_point.get ()) a.init
 
 let print_highlevel (config : Config.t) =
-  match config.allocations with
+  match config.init_clear with
   | [] -> ()
   | l ->
       print_in_file (Highlevel_fun.get ()) (fun fmt ->
-          Fmt.list print_allocation fmt l)
+          Fmt.list print_init_clear fmt l)
 
 let main () =
   let config = Config.read_config () in
