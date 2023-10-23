@@ -1,5 +1,8 @@
 #include <stdint.h>
 
+#ifndef BAR_H
+#define BAR_H
+
 typedef struct
 {
     int t;
@@ -7,13 +10,15 @@ typedef struct
     int64_t i64;
 } bar_struct;
 
-int max_value = 15;
+static int max_value = 15;
 
 void foo(void);
 
-int bar(int x){
+static int bar(int x){
   return x;
 }
 
 void init_bar(bar_struct *b);
 void clear_bar(bar_struct *b);
+
+#endif

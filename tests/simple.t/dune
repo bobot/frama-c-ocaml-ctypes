@@ -1,0 +1,31 @@
+(rule
+  (targets type_description.ml function_description.ml highlevel.ml)
+  (action 
+                 (run %{bin:frama-c-ocaml-ctypes} -verbose 0
+                   -gen-config %{dep:config.json}
+                   %{dep:foo.h})))
+
+
+(library
+ (name foo)
+ ; (foreign_archives ((path flint/flint)(mode whole)))
+ (foreign_stubs
+  (language c)
+  (names foo))
+ (flags -w -9-27)
+ (ctypes
+  (external_library_name foo)
+  (build_flags_resolver
+  (vendored (c_flags -I. :standard))
+  )
+  (deps foo.h)
+  (headers (include "foo.h"))
+  (type_description
+   (instance Type)
+   (functor Type_description))
+  (function_description
+   (concurrency sequential)
+   (instance Function)
+   (functor Function_description))
+  (generated_types Types_generated)
+  (generated_entry_point C)))

@@ -114,8 +114,8 @@ let print_type_global fmt (global : Cil_types.global) =
           Fmt.pf fmt "@[type t@]@ ";
           Fmt.pf fmt
             "@[<hv 1>@[let t : t structure typ =@]@ @[let s = structure \"\" \
-             in@]@ @[typedef s %a@]@]@ "
-            print_orig typeinfo.torig_name;
+             in@]@ @[typedef s \"%s\"@]@]@ "
+            typeinfo.torig_name;
           Fmt.pf fmt "@]@,@[end@]@ ";
           Fmt.pf fmt "%a@," print_fields c;
           Fmt.pf fmt "@[let () = seal D.t@]";
